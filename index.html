@@ -1,72 +1,1010 @@
-<!doctype html><html lang="it"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0d12"><meta name="apple-mobile-web-app-capable" content="yes">
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="manifest.json"><title>FIT TEEN</title>
+<link rel="manifest" href="manifest.json">
+
+<title>FIT TEEN 2.0</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#090b0f;color:#f7f7f8;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-.app{max-width:540px;margin:auto;min-height:100vh;padding-bottom:88px}.top{padding:20px 18px 10px;display:flex;justify-content:space-between}.logo{font-weight:900;letter-spacing:2px}.status{font-size:11px;color:#a7ff3f;background:#171d15;padding:7px 9px;border-radius:99px}
-main{padding:8px 14px}.screen{display:none}.screen.active{display:block}.card{background:#151922;border:1px solid #252b36;border-radius:20px;padding:16px;margin-bottom:12px}.hero{padding:22px;background:linear-gradient(145deg,#202936,#151922)}.ey{font-size:11px;color:#a7ff3f;font-weight:900;letter-spacing:1.2px}.hero h1{font-size:30px;margin:8px 0}.muted{color:#9ca5b4;font-size:13px}.btn{border:0;border-radius:13px;padding:13px 15px;font-weight:900;background:#252c38;color:#fff}.primary{background:#a7ff3f;color:#080a0c;width:100%;font-size:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#151922;border:1px solid #252b36;border-radius:17px;padding:14px}.stat b{font-size:24px;display:block}.week{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{background:#1b2029;border-radius:11px;padding:8px 2px;text-align:center;color:#9ca5b4;font-size:11px}.day.on{background:#a7ff3f;color:#080a0c;font-weight:900}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.tag{color:#a7ff3f;background:#24301c;border-radius:99px;padding:5px 8px;font-size:10px;font-weight:900}.exercise{display:grid;grid-template-columns:88px 1fr;gap:12px;padding:13px 0;border-top:1px solid #292f3a}.exercise:first-child{border-top:0}.art{width:88px;height:72px;border-radius:14px;background:#0e1218;display:grid;place-items:center;font-size:34px}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(540px,100%);background:#11151d;border-top:1px solid #282e39;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 5px calc(8px + env(safe-area-inset-bottom));z-index:20}.bottom button{border:0;background:transparent;color:#8e97a6;font-size:10px}.bottom button strong{display:block;font-size:20px;margin-bottom:2px}.bottom button.active{color:#a7ff3f}
-.modal{position:fixed;inset:0;background:#000c;z-index:50;display:none;align-items:flex-end}.modal.show{display:flex}.sheet{width:min(540px,100%);background:#151922;border-radius:24px 24px 0 0;padding:18px;max-height:94vh;overflow:auto}.timer{text-align:center;font-size:68px;font-weight:900;margin:8px}.bar{height:8px;background:#2b313d;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;background:#a7ff3f;width:100%}.controls{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;margin-top:12px}.controls button{border:0;border-radius:12px;padding:12px;font-weight:900;background:#252c38;color:#fff}.controls .go{background:#a7ff3f;color:#080a0c}.toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:#f7f7f8;color:#080a0c;padding:11px 15px;border-radius:99px;font-weight:800;display:none;z-index:80}.toast.show{display:block}
-</style></head><body><div class="app">
-<header class="top"><div class="logo">FIT TEEN</div><div class="status">● PRONTO</div></header>
+*{box-sizing:border-box}
+
+:root{
+  --bg:#07111f;
+  --card:#101d2e;
+  --card2:#14243a;
+  --text:#f7fbff;
+  --muted:#8fa3b9;
+  --blue:#39a7ff;
+  --green:#36df91;
+  --purple:#8d72ff;
+  --orange:#ff9f43;
+  --danger:#ff5571;
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 20% 0%,#123458 0,transparent 35%),
+    linear-gradient(180deg,#07111f,#050a12);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial,sans-serif;
+  min-height:100vh;
+}
+
+.app{
+  max-width:540px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:95px;
+}
+
+header{
+  padding:22px 18px 10px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(18px);
+  background:rgba(7,17,31,.78);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo h1{
+  margin:0;
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+.logo span{color:var(--blue)}
+
+.xp{
+  background:#102b45;
+  border:1px solid #214b70;
+  padding:8px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:800;
+}
+
+main{padding:10px 15px}
+
+.screen{display:none}
+.screen.active{display:block}
+
+.hero{
+  padding:24px 20px;
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(57,167,255,.35),transparent 30%),
+    linear-gradient(145deg,#112b47,#0c1728);
+  border:1px solid #234463;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+  margin-bottom:16px;
+}
+
+.hero small{
+  color:var(--blue);
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.hero h2{
+  font-size:31px;
+  line-height:1.05;
+  margin:9px 0;
+}
+
+.hero p{
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.btn{
+  border:0;
+  color:white;
+  background:linear-gradient(135deg,#269fff,#586dff);
+  padding:14px 18px;
+  border-radius:16px;
+  font-size:16px;
+  font-weight:850;
+  width:100%;
+  box-shadow:0 10px 25px rgba(42,145,255,.22);
+}
+
+.btn:active{transform:scale(.98)}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.card{
+  background:rgba(16,29,46,.92);
+  border:1px solid #1d344e;
+  border-radius:22px;
+  padding:17px;
+  margin-bottom:14px;
+}
+
+.stat{
+  min-height:115px;
+}
+
+.stat .icon{font-size:28px}
+
+.stat b{
+  display:block;
+  font-size:27px;
+  margin-top:7px;
+}
+
+.muted{color:var(--muted)}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:25px 2px 12px;
+}
+
+.section-title h2{
+  margin:0;
+  font-size:21px;
+}
+
+.badge{
+  padding:6px 9px;
+  border-radius:10px;
+  background:#162d46;
+  color:var(--blue);
+  font-size:12px;
+  font-weight:900;
+}
+
+.workout{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#122a44,#101b2b);
+}
+
+.workout h3{
+  margin:7px 0;
+  font-size:20px;
+}
+
+.workout p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.workout .emoji{
+  font-size:43px;
+  position:absolute;
+  right:15px;
+  top:15px;
+}
+
+.exercise{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  background:#0e1a2a;
+  border:1px solid #1d344e;
+  padding:12px;
+  border-radius:19px;
+  margin-bottom:10px;
+}
+
+.exercise-art{
+  width:75px;
+  height:75px;
+  border-radius:16px;
+  background:linear-gradient(145deg,#173c61,#101b2c);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  flex-shrink:0;
+}
+
+.exercise-art .person{
+  font-size:42px;
+  animation:bounce 1.1s infinite ease-in-out;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(5px) rotate(-3deg)}
+  50%{transform:translateY(-7px) rotate(3deg)}
+}
+
+.exercise-info{flex:1}
+
+.exercise-info b{
+  display:block;
+  margin-bottom:4px;
+}
+
+.exercise-info span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.play{
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  border:0;
+  background:var(--blue);
+  color:white;
+  font-size:18px;
+}
+
+.progress{
+  height:10px;
+  border-radius:20px;
+  background:#18283b;
+  overflow:hidden;
+  margin:12px 0;
+}
+
+.progress i{
+  display:block;
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--blue),var(--green));
+  border-radius:20px;
+  transition:.4s;
+}
+
+.timer{
+  text-align:center;
+  padding:25px 10px;
+}
+
+.timer-circle{
+  width:220px;
+  height:220px;
+  margin:10px auto 25px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle,#0c1929 65%,transparent 66%),
+    conic-gradient(var(--blue) var(--deg,0deg),#1b2a3c 0);
+  box-shadow:0 0 45px rgba(57,167,255,.18);
+}
+
+.timer-number{
+  font-size:55px;
+  font-weight:900;
+}
+
+.timer-name{
+  font-size:23px;
+  font-weight:900;
+  margin-bottom:7px;
+}
+
+.timer-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.timer-buttons button{flex:1}
+
+.food{
+  display:flex;
+  gap:13px;
+  align-items:center;
+}
+
+.food-icon{
+  width:55px;
+  height:55px;
+  border-radius:17px;
+  background:#162d46;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+}
+
+.profile{
+  text-align:center;
+  padding:25px;
+}
+
+.avatar{
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  margin:auto;
+  background:linear-gradient(145deg,#389fff,#735fff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:45px;
+  box-shadow:0 15px 35px rgba(57,167,255,.25);
+}
+
+.level{
+  font-size:27px;
+  font-weight:900;
+  margin:15px 0 4px;
+}
+
+.nav{
+  position:fixed;
+  z-index:50;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(540px,100%);
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(7,15,26,.88);
+  backdrop-filter:blur(20px);
+  border-top:1px solid #20354d;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.nav button{
+  border:0;
+  background:none;
+  color:#72869d;
+  font-size:11px;
+  font-weight:800;
+  padding:6px 2px;
+}
+
+.nav button.active{color:var(--blue)}
+
+.nav .navicon{
+  display:block;
+  font-size:23px;
+  margin-bottom:3px;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  z-index:100;
+  display:none;
+  align-items:flex-end;
+}
+
+.modal.show{display:flex}
+
+.modal-box{
+  width:100%;
+  max-width:540px;
+  margin:auto;
+  background:#0c1727;
+  border:1px solid #29425d;
+  border-radius:28px 28px 0 0;
+  padding:22px;
+  max-height:85vh;
+  overflow:auto;
+}
+
+.close{
+  float:right;
+  background:#17283c;
+  color:white;
+  border:0;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  font-size:20px;
+}
+
+.video{
+  height:210px;
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 50% 35%,#35aaff 0 12%,transparent 13%),
+    linear-gradient(135deg,#173a5e,#0a1320);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:15px 0;
+  overflow:hidden;
+}
+
+.video .animated-person{
+  font-size:95px;
+  animation:exercise 1.4s infinite ease-in-out;
+}
+
+@keyframes exercise{
+  0%,100%{transform:translateY(15px) scale(.95)}
+  50%{transform:translateY(-12px) scale(1.05)}
+}
+
+.toast{
+  position:fixed;
+  z-index:200;
+  left:50%;
+  bottom:105px;
+  transform:translateX(-50%) translateY(20px);
+  background:#edf7ff;
+  color:#07111f;
+  padding:12px 18px;
+  border-radius:15px;
+  font-weight:800;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+@media(max-width:380px){
+  .hero h2{font-size:27px}
+  .timer-circle{width:190px;height:190px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="logo">
+    <h1>FIT <span>TEEN</span> 2.0</h1>
+    <div class="xp">⚡ <span id="xp">0</span> XP</div>
+  </div>
+</header>
+
 <main>
+
+<!-- HOME -->
 <section id="home" class="screen active">
-<div class="card hero"><div class="ey">PROSSIMO ALLENAMENTO</div><h1>Corpo Libero A</h1><p class="muted">Parte superiore + core · circa 25 min</p><button class="btn primary" onclick="startWorkout('A')">▶ INIZIA ALLENAMENTO</button></div>
-<div class="grid"><div class="stat"><b id="xp">0</b><span class="muted">XP</span></div><div class="stat"><b id="streak">0 🔥</b><span class="muted">streak</span></div></div>
-<div class="card"><div class="row"><h2>Settimana</h2><span class="muted">Karate + forza</span></div><div class="week" id="week"></div></div>
-<div class="card"><h2>Obiettivo</h2><p class="muted">Diventare più forte e costruire muscolo gradualmente.</p><div class="bar"><span id="goal"></span></div></div>
+
+  <div class="hero">
+    <small>IL TUO PERCORSO FITNESS</small>
+    <h2>Diventa la versione migliore di te. 💪</h2>
+    <p>Allenati, mangia meglio e tieni sotto controllo i tuoi progressi.</p>
+    <button class="btn" onclick="nav('workouts')">Inizia allenamento →</button>
+  </div>
+
+  <div class="grid">
+    <div class="card stat">
+      <div class="icon">🔥</div>
+      <span class="muted">Allenamenti</span>
+      <b id="workoutCount">0</b>
+    </div>
+
+    <div class="card stat">
+      <div class="icon">🏆</div>
+      <span class="muted">Livello</span>
+      <b id="level">1</b>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">
+      <h2>Progressi questa settimana</h2>
+      <span class="badge" id="percent">0%</span>
+    </div>
+    <div class="progress"><i id="weekProgress"></i></div>
+    <span class="muted">Continua così! Ogni allenamento conta.</span>
+  </div>
+
+  <div class="section-title">
+    <h2>Allenamento consigliato</h2>
+  </div>
+
+  <div class="card workout" onclick="startWorkout('full')">
+    <div class="emoji">🏋️</div>
+    <span class="badge">15 MIN</span>
+    <h3>Full Body Teen</h3>
+    <p>Allenamento completo per tutto il corpo.</p>
+    <button class="btn">Inizia</button>
+  </div>
+
 </section>
 
-<section id="workouts" class="screen"><div class="card"><div class="ey">WORKOUT</div><h1>Allenamenti</h1><p class="muted">Senza attrezzi.</p></div>
-<div id="list"></div></section>
 
-<section id="food" class="screen"><div class="card"><div class="ey">NUTRIZIONE</div><h1>Alimentazione</h1><p class="muted">Indicazioni generali per crescita e sport.</p></div>
-<div class="card"><h3>🍳 Colazione</h3><p>Latte/yogurt + cereali o avena + frutta.</p></div>
-<div class="card"><h3>🍝 Pranzo</h3><p>Pasta/riso/patate + carne, pesce, uova o legumi + verdure + olio d'oliva.</p></div>
-<div class="card"><h3>🥪 Merenda</h3><p>Yogurt/latte + frutta + frutta secca oppure panino.</p></div>
-<div class="card"><h3>🍚 Cena</h3><p>Fonte proteica + carboidrati + verdure + olio d'oliva.</p></div>
-<div class="card"><p class="muted">A 14 anni non impostare autonomamente calorie o grammi rigidi di proteine/carboidrati. Per quantità personalizzate coinvolgi un genitore/tutore e pediatra o dietista.</p></div></section>
+<!-- WORKOUTS -->
+<section id="workouts" class="screen">
 
-<section id="progress" class="screen"><div class="card"><div class="ey">PROGRESSI</div><h1>I miei risultati</h1><div class="grid"><div class="stat"><b id="count">0</b><span class="muted">workout</span></div><div class="stat"><b id="mins">0</b><span class="muted">minuti</span></div></div></div>
-<div class="card"><h3>🏆 Record</h3><p>Push-up: <b id="rp">—</b></p><p>Squat: <b id="rs">—</b></p><p>Plank: <b id="rk">—</b></p></div></section>
+  <div class="section-title">
+    <h2>Allenamenti</h2>
+    <span class="badge">3 PROGRAMMI</span>
+  </div>
 
-<section id="more" class="screen"><div class="card"><div class="ey">ALTRO</div><h1>Impostazioni</h1><p class="muted">Questa versione funziona offline e salva i progressi sul dispositivo.</p></div>
-<div class="card"><h3>🔔 Notifiche</h3><p class="muted">Puoi autorizzare le notifiche del browser quando la PWA è installata.</p><button class="btn primary" onclick="askNotify()">ATTIVA NOTIFICHE</button><p id="n" class="muted"></p></div></section>
+  <div class="card workout">
+    <div class="emoji">🔥</div>
+    <span class="badge">15 MIN</span>
+    <h3>Full Body</h3>
+    <p>Petto · gambe · addome · braccia</p>
+    <button class="btn" onclick="startWorkout('full')">Inizia allenamento</button>
+  </div>
+
+  <div class="card workout">
+    <div class="emoji">💪</div>
+    <span class="badge">12 MIN</span>
+    <h3>Upper Body</h3>
+    <p>Focus su spalle, braccia e petto.</p>
+    <button class="btn" onclick="startWorkout('upper')">Inizia allenamento</button>
+  </div>
+
+  <div class="card workout">
+    <div class="emoji">🦵</div>
+    <span class="badge">12 MIN</span>
+    <h3>Leg Day</h3>
+    <p>Gambe e glutei con esercizi a corpo libero.</p>
+    <button class="btn" onclick="startWorkout('legs')">Inizia allenamento</button>
+  </div>
+
+</section>
+
+
+<!-- EXERCISES -->
+<section id="exercises" class="screen">
+
+  <div class="section-title">
+    <h2>Esercizi</h2>
+    <span class="badge">GUIDE</span>
+  </div>
+
+  <div id="exerciseList"></div>
+
+</section>
+
+
+<!-- FOOD -->
+<section id="food" class="screen">
+
+  <div class="hero">
+    <small>ALIMENTAZIONE</small>
+    <h2>Nutri il tuo corpo. 🍎</h2>
+    <p>Idee semplici per una giornata equilibrata.</p>
+  </div>
+
+  <div class="card food">
+    <div class="food-icon">🥣</div>
+    <div>
+      <b>Colazione</b>
+      <p class="muted">Yogurt, frutta e cereali.</p>
+    </div>
+  </div>
+
+  <div class="card food">
+    <div class="food-icon">🥪</div>
+    <div>
+      <b>Pranzo</b>
+      <p class="muted">Pasta/riso, verdure e una fonte proteica.</p>
+    </div>
+  </div>
+
+  <div class="card food">
+    <div class="food-icon">🍌</div>
+    <div>
+      <b>Spuntino</b>
+      <p class="muted">Frutta, yogurt o una piccola merenda.</p>
+    </div>
+  </div>
+
+  <div class="card food">
+    <div class="food-icon">🍗</div>
+    <div>
+      <b>Cena</b>
+      <p class="muted">Verdure, carboidrati e proteine.</p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="screen">
+
+  <div class="card profile">
+    <div class="avatar">💪</div>
+    <div class="level">FIT TEEN</div>
+    <span class="muted">Il tuo profilo</span>
+  </div>
+
+  <div class="grid">
+    <div class="card stat">
+      <div class="icon">🔥</div>
+      <span class="muted">Workout</span>
+      <b id="profileWorkout">0</b>
+    </div>
+
+    <div class="card stat">
+      <div class="icon">⚡</div>
+      <span class="muted">XP</span>
+      <b id="profileXP">0</b>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🏆 Obiettivo</h3>
+    <p class="muted">Costruire abitudini sane e diventare più forte, senza esagerare.</p>
+  </div>
+
+</section>
+
 </main>
-<nav class="bottom"><button class="active" onclick="nav('home',this)"><strong>⌂</strong>Home</button><button onclick="nav('workouts',this)"><strong>⚡</strong>Workout</button><button onclick="nav('food',this)"><strong>◉</strong>Cibo</button><button onclick="nav('progress',this)"><strong>↗</strong>Progressi</button><button onclick="nav('more',this)"><strong>⚙</strong>Altro</button></nav>
 </div>
 
-<div id="modal" class="modal"><div class="sheet">
-<div class="row"><div><div class="ey" id="mtype">WORKOUT</div><h2 id="mname">Corpo Libero A</h2></div><button class="btn" onclick="finishWorkout()">✕</button></div>
-<div class="timer" id="timer">30</div><div class="bar"><span id="tbar"></span></div>
-<div class="card" id="exbox"></div>
-<div class="controls"><button onclick="prev()">← Indietro</button><button class="go" id="play" onclick="toggleTimer()">AVVIA</button><button onclick="next()">Avanti →</button></div>
-<p class="muted" style="text-align:center;margin-top:10px">Nessun esercizio deve causare dolore. Interrompi se non stai bene.</p>
-</div></div><div id="toast" class="toast"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="active" onclick="nav('home',this)">
+    <span class="navicon">🏠</span>Home
+  </button>
+
+  <button onclick="nav('workouts',this)">
+    <span class="navicon">🏋️</span>Workout
+  </button>
+
+  <button onclick="nav('food',this)">
+    <span class="navicon">🍎</span>Food
+  </button>
+
+  <button onclick="nav('profile',this)">
+    <span class="navicon">👤</span>Profilo
+  </button>
+</nav>
+
+
+<!-- MODAL EXERCISE -->
+<div class="modal" id="exerciseModal">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal()">×</button>
+
+    <h2 id="modalTitle">Esercizio</h2>
+    <p class="muted" id="modalInfo"></p>
+
+    <div class="video">
+      <div class="animated-person" id="animatedPerson">🏃</div>
+    </div>
+
+    <div class="card">
+      <h3>🎬 Come eseguirlo</h3>
+      <p id="modalInstructions" class="muted"></p>
+    </div>
+
+    <button class="btn" onclick="closeModal()">Ho capito ✓</button>
+  </div>
+</div>
+
+
+<!-- TIMER -->
+<div class="modal" id="timerModal">
+  <div class="modal-box">
+    <button class="close" onclick="closeTimer()">×</button>
+
+    <div class="timer">
+      <div class="timer-name" id="timerExercise">Push-up</div>
+
+      <div class="timer-circle" id="timerCircle">
+        <div class="timer-number" id="timer">30</div>
+      </div>
+
+      <p class="muted" id="timerSet">Preparati!</p>
+
+      <div class="timer-buttons">
+        <button class="btn" onclick="toggleTimer()" id="timerBtn">▶ Avvia</button>
+        <button class="btn" onclick="nextExercise()">Avanti →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Allenamento completato! 🎉</div>
+
+
 <script>
-const workouts={
-A:[["Push-up","6–12","💪",30],["Pike push-up","5–10","🏋️",30],["Superman","12–15","🦸",30],["Plank","30–45 s","🔥",30]],
-B:[["Squat","15–20","🦵",30],["Affondi","8–12 / gamba","🦵",30],["Glute bridge","15–20","🍑",30],["Calf raises","20–25","🦶",30],["Plank","30–60 s","🔥",30]],
-C:[["Push-up","6–12","💪",30],["Squat","15–20","🦵",30],["Pike push-up","5–10","🏋️",30],["Affondi","8–10 / gamba","🦵",30],["Superman","12–15","🦸",30],["Mountain climber","20–30","⚡",30],["Plank","30–45 s","🔥",30]]
+
+const exercises={
+  push:{
+    name:"Push-up",
+    icon:"💪",
+    info:"Petto · spalle · tricipiti",
+    instruction:"Mantieni il corpo dritto, mani leggermente più larghe delle spalle. Scendi controllando il movimento e poi spingi verso l'alto."
+  },
+  squat:{
+    name:"Squat",
+    icon:"🦵",
+    info:"Gambe · glutei",
+    instruction:"Piedi circa alla larghezza delle spalle. Porta indietro il bacino, piega le ginocchia e risali mantenendo il busto stabile."
+  },
+  plank:{
+    name:"Plank",
+    icon:"🔥",
+    info:"Addome · core",
+    instruction:"Appoggia gli avambracci, mantieni il corpo allineato e contrai l'addome senza inarcare la schiena."
+  },
+  lunges:{
+    name:"Affondi",
+    icon:"🦵",
+    info:"Gambe · glutei",
+    instruction:"Fai un passo avanti, piega entrambe le ginocchia mantenendo il busto dritto e torna alla posizione iniziale."
+  },
+  jumping:{
+    name:"Jumping Jacks",
+    icon:"🏃",
+    info:"Cardio · corpo intero",
+    instruction:"Salta aprendo contemporaneamente gambe e braccia, poi torna alla posizione iniziale."
+  }
 };
-let data=JSON.parse(localStorage.getItem("fitteen2")||'{"xp":0,"streak":0,"count":0,"mins":0,"push":0,"squat":0,"plank":0}');
-let current=[],pos=0,sec=30,total=30,run=false,iv=null;
-const $=id=>document.getElementById(id);
-function save(){localStorage.setItem("fitteen2",JSON.stringify(data));render()}
-function render(){$("xp").textContent=data.xp;$("streak").textContent=data.streak+" 🔥";$("count").textContent=data.count;$("mins").textContent=data.mins;$("rp").textContent=data.push||"—";$("rs").textContent=data.squat||"—";$("rk").textContent=data.plank?data.plank+" s":"—";$("goal").style.width=Math.min(100,data.count/12*100)+"%"}
-function nav(id,b){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));$(id).classList.add("active");document.querySelectorAll(".bottom button").forEach(x=>x.classList.remove("active"));b.classList.add("active");scrollTo(0,0)}
-function build(){let names={A:"Corpo Libero A",B:"Corpo Libero B",C:"Full Body C"};$("list").innerHTML=Object.keys(workouts).map(k=>`<div class="card"><div class="row"><div><h3>${names[k]}</h3><span class="muted">${workouts[k].length} esercizi · ~25 min</span></div><button class="btn" onclick="startWorkout('${k}')">START</button></div></div>`).join("")}
-function startWorkout(k){clearInterval(iv);current=workouts[k];pos=0;run=false;$("modal").classList.add("show");$("mname").textContent=k==="C"?"Full Body C":"Corpo Libero "+k;showExercise()}
-function showExercise(){let x=current[pos];total=sec=x[3];$("timer").textContent=sec;$("tbar").style.width="100%";$("play").textContent="AVVIA";$("exbox").innerHTML=`<div class="row"><div><span class="tag">ESERCIZIO ${pos+1}/${current.length}</span><h2 style="margin-top:8px">${x[0]}</h2><p class="muted">${x[1]} · esecuzione controllata</p></div><div class="art">${x[2]}</div></div>`}
-function toggleTimer(){if(run){clearInterval(iv);run=false;$("play").textContent="RIPRENDI";return}run=true;$("play").textContent="PAUSA";iv=setInterval(()=>{sec--; $("timer").textContent=sec;$("tbar").style.width=Math.max(0,sec/total*100)+"%";if(sec<=0){clearInterval(iv);run=false;next()}},1000)}
-function next(){if(pos<current.length-1){pos++;showExercise();toast("Prossimo esercizio")}else complete()}
-function prev(){if(pos>0){pos--;showExercise()}}
-function complete(){clearInterval(iv);run=false;data.count++;data.mins+=25;data.xp+=100;data.streak++;save();$("modal").classList.remove("show");toast("Allenamento completato! +100 XP 🔥")}
-function finishWorkout(){clearInterval(iv);run=false;$("modal").classList.remove("show")}
-function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1800)}
-function askNotify(){if(!("Notification"in window)){$("n").textContent="Il browser non supporta le notifiche.";return}Notification.requestPermission().then(p=>$("n").textContent=p==="granted"?"Notifiche autorizzate.":"Permesso non concesso.")}
-function week(){let d=new Date().getDay(),n=["D","L","M","M","G","V","S"];$("week").innerHTML=n.map((x,i)=>`<div class="day ${i===d?"on":""}">${x}<br>${i===2||i===5?"🥋":i===1||i===4?"💪":"·"}</div>`).join("")}
-build();week();render();
-if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
-</script></body></html>
+
+const programs={
+  full:["jumping","squat","push","lunges","plank"],
+  upper:["push","plank","jumping","push"],
+  legs:["squat","lunges","jumping","squat"]
+};
+
+let current=[];
+let position=0;
+let seconds=30;
+let running=false;
+let interval=null;
+
+let data=JSON.parse(localStorage.getItem("fitteen2")||'{"xp":0,"workouts":0}');
+
+function save(){
+  localStorage.setItem("fitteen2",JSON.stringify(data));
+  renderStats();
+}
+
+function renderStats(){
+  document.getElementById("xp").textContent=data.xp;
+  document.getElementById("workoutCount").textContent=data.workouts;
+  document.getElementById("profileWorkout").textContent=data.workouts;
+  document.getElementById("profileXP").textContent=data.xp;
+
+  const level=Math.max(1,Math.floor(data.xp/100)+1);
+  document.getElementById("level").textContent=level;
+
+  const percent=Math.min(100,(data.workouts%7)/7*100);
+  document.getElementById("percent").textContent=Math.round(percent)+"%";
+  document.getElementById("weekProgress").style.width=percent+"%";
+}
+
+function nav(id,button){
+
+  document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+
+  if(button) button.classList.add("active");
+  else{
+    const buttons=document.querySelectorAll(".nav button");
+    if(id==="home")buttons[0].classList.add("active");
+    if(id==="workouts")buttons[1].classList.add("active");
+    if(id==="food")buttons[2].classList.add("active");
+    if(id==="profile")buttons[3].classList.add("active");
+  }
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function buildExercises(){
+
+  const list=document.getElementById("exerciseList");
+
+  list.innerHTML="";
+
+  Object.keys(exercises).forEach(key=>{
+
+    const e=exercises[key];
+
+    list.innerHTML+=`
+      <div class="exercise">
+        <div class="exercise-art">
+          <div class="person">${e.icon}</div>
+        </div>
+
+        <div class="exercise-info">
+          <b>${e.name}</b>
+          <span>${e.info}</span>
+        </div>
+
+        <button class="play" onclick="showExercise('${key}')">▶</button>
+      </div>
+    `;
+  });
+}
+
+function showExercise(key){
+
+  const e=exercises[key];
+
+  document.getElementById("modalTitle").textContent=e.name;
+  document.getElementById("modalInfo").textContent=e.info;
+  document.getElementById("modalInstructions").textContent=e.instruction;
+  document.getElementById("animatedPerson").textContent=e.icon;
+
+  document.getElementById("exerciseModal").classList.add("show");
+}
+
+function closeModal(){
+  document.getElementById("exerciseModal").classList.remove("show");
+}
+
+function startWorkout(type){
+
+  current=programs[type];
+  position=0;
+
+  nav("exercises");
+
+  renderCurrentWorkout();
+
+  setTimeout(()=>startTimer(),300);
+}
+
+function renderCurrentWorkout(){
+
+  const list=document.getElementById("exerciseList");
+  list.innerHTML="";
+
+  current.forEach((key,i)=>{
+
+    const e=exercises[key];
+
+    list.innerHTML+=`
+      <div class="exercise">
+        <div class="exercise-art">
+          <div class="person">${e.icon}</div>
+        </div>
+
+        <div class="exercise-info">
+          <b>${i+1}. ${e.name}</b>
+          <span>${i===position?"ORA":"Prossimo"} · 30 secondi</span>
+        </div>
+
+        <button class="play" onclick="showExercise('${key}')">▶</button>
+      </div>
+    `;
+  });
+}
+
+function startTimer(){
+
+  seconds=30;
+  running=false;
+
+  document.getElementById("timerBtn").textContent="▶ Avvia";
+
+  document.getElementById("timerModal").classList.add("show");
+
+  updateTimer();
+}
+
+function updateTimer(){
+
+  document.getElementById("timer").textContent=seconds;
+
+  const deg=((30-seconds)/30)*360;
+
+  document.getElementById("timerCircle").style.setProperty("--deg",deg+"deg");
+
+  const e=exercises[current[position]];
+
+  if(e){
+    document.getElementById("timerExercise").textContent=e.name;
+    document.getElementById("timerSet").textContent=
+      "Esercizio "+(position+1)+" di "+current.length;
+  }
+}
+
+function toggleTimer(){
+
+  if(running){
+
+    clearInterval(interval);
+    running=false;
+
+    document.getElementById("timerBtn").textContent="▶ Riprendi";
+
+  }else{
+
+    running=true;
+
+    document.getElementById("timerBtn").textContent="⏸ Pausa";
+
+    interval=setInterval(()=>{
+
+      seconds--;
+
+      updateTimer();
+
+      if(seconds<=0){
+
+        clearInterval(interval);
+        running=false;
+
+        nextExercise();
+
+      }
+
+    },1000);
+  }
+}
+
+function nextExercise(){
+
+  clearInterval(interval);
+  running=false;
+
+  if(position<current.length-1){
+
+    position++;
+    seconds=30;
+
+    updateTimer();
+
+    document.getElementById("timerBtn").textContent="▶ Avvia";
+
+  }else{
+
+    finishWorkout();
+  }
+}
+
+function finishWorkout(){
+
+  clearInterval(interval);
+
+  data.workouts++;
+  data.xp+=50;
+
+  save();
+
+  document.getElementById("timerModal").classList.remove("show");
+
+  showToast("Allenamento completato! +50 XP 🏆");
+
+  renderCurrentWorkout();
+}
+
+function closeTimer(){
+
+  clearInterval(interval);
+  running=false;
+
+  document.getElementById("timerModal").classList.remove("show");
+}
+
+function showToast(text){
+
+  const t=document.getElementById("toast");
+
+  t.textContent=text;
+  t.classList.add("show");
+
+  setTimeout(()=>t.classList.remove("show"),2500);
+}
+
+buildExercises();
+renderStats();
+
+</script>
+
+</body>
+</html>
